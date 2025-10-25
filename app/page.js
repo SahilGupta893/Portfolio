@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import {
   motion,
   useAnimation,
@@ -186,7 +187,7 @@ const CustomCursor = () => {
     };
     window.addEventListener("mousemove", moveCursor);
     return () => window.removeEventListener("mousemove", moveCursor);
-  }, []);
+  }, [cursorX, cursorY]);
 
   return (
     <motion.div
@@ -414,11 +415,13 @@ const AboutMeSection = () => {
           <div className="relative">
             <div className="w-80 h-80 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl">
               <div className="w-72 h-72 bg-white dark:bg-gray-900 rounded-full flex items-center justify-center overflow-hidden">
-                <img
-                  src="/sahil.jpeg"
-                  alt="Sahil Gupta"
-                  className="w-full h-full object-cover rounded-full hover:scale-105 transition-transform duration-500"
-                />
+                <Image
+  src="/sahil.jpeg"
+  alt="Profile"
+  width={300}
+  height={300}
+  className="w-full h-full object-cover rounded-full"
+/>
               </div>
             </div>
             <div className="absolute -bottom-5 -right-5 w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg animate-bounce">
@@ -436,14 +439,14 @@ const AboutMeSection = () => {
         >
           <div className="bg-white/10 dark:bg-gray-800/40 backdrop-blur-lg rounded-3xl p-10 border border-white/10 shadow-lg hover:shadow-2xl transition-all duration-500">
             <h3 className="text-3xl font-semibold mb-4 text-white">
-              👋 Hi, I'm{" "}
+              👋 Hi, I&apos;m{" "}
               <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent font-bold">
                 Sahil Gupta
               </span>
             </h3>
 
             <p className="text-gray-300 text-lg leading-relaxed">
-              I’m a passionate <b>Full-Stack Developer</b> and Final Year CSE
+              I&apos;m a passionate <b>Full-Stack Developer</b> and Final Year CSE
               student who enjoys building elegant, scalable, and interactive web
               applications. I focus on writing clean, optimized, and
               maintainable code to create real-world impact.
@@ -892,7 +895,7 @@ const ContactSection = () => {
         variants={itemVariants}
         className="text-lg text-center max-w-2xl mx-auto text-gray-600 dark:text-gray-400 mb-12"
       >
-        Have a project in mind or just want to say hi? I'd love to hear from
+        Have a project in mind or just want to say hi? I&apos;d love to hear from
         you.
       </motion.p>
       <motion.form
