@@ -1,5 +1,6 @@
 // ProjectCard.jsx
 import { FaGithub, FaVideo } from "react-icons/fa";
+import Image from "next/image";
 
 const ProjectCard = ({ project }) => {
   return (
@@ -7,13 +8,16 @@ const ProjectCard = ({ project }) => {
 
 
       {/* Project Image */}
-      {project.image && (
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-48 object-cover"
-        />
-      )}
+     {project?.image && (
+  <Image
+    src={project.image}
+    alt={project.title || "Project"}
+    width={400}
+    height={300}
+    className="w-full h-full object-cover rounded-lg"
+  />
+)}
+
       <div className="p-5 flex flex-col flex-1">
         {/* Project Title */}
         <h3 className="text-xl font-bold mb-2">{project.title}</h3>
