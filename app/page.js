@@ -15,11 +15,6 @@ import {
   Linkedin,
   Twitter,
   ExternalLink,
-  Sun,
-  Moon,
-  Briefcase,
-  GraduationCap,
-  Code,
 } from "lucide-react";
 import {
   SiHtml5,
@@ -39,8 +34,7 @@ import {
   SiNextdotjs,
   SiLeetcode,
 } from "react-icons/si";
-import ProjectCard from "./ProjectCard/page";
-import { FaBolt, FaCode, FaGlobe, FaBook, FaAward } from "react-icons/fa";
+import { FaBolt, FaCode, FaGlobe, FaBook } from "react-icons/fa";
 
 // --- Custom Style for Animations ---
 const CustomStyles = () => (
@@ -88,7 +82,7 @@ const CustomStyles = () => (
       left: 0;
       right: 0;
       bottom: 0;
-      border-radius: 0.75rem; /* 12px */
+      border-radius: 0.75rem;
       padding: 1px;
       background: linear-gradient(
         135deg,
@@ -121,7 +115,6 @@ const CustomStyles = () => (
 // --- Main App Component ---
 export default function App() {
   const [theme, setTheme] = useState("dark");
-
 
   useEffect(() => {
     if (theme === "dark") {
@@ -236,7 +229,6 @@ const GradientButton = ({ href, children, as = "a" }) => {
 
 // --- Page Sections ---
 const Header = ({ toggleTheme, currentTheme }) => {
-  // ... (Header component remains largely the same)
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -247,35 +239,33 @@ const Header = ({ toggleTheme, currentTheme }) => {
 
   const [activeSection, setActiveSection] = useState("about");
 
-useEffect(() => {
-  const sections = document.querySelectorAll("section[id]");
+  useEffect(() => {
+    const sections = document.querySelectorAll("section[id]");
 
-  const handleScroll = () => {
-    let current = "";
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop - 100;
-      const sectionHeight = section.clientHeight;
-      if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-        current = section.getAttribute("id");
-      }
-    });
-    setActiveSection(current);
-  };
+    const handleScroll = () => {
+      let current = "";
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+          current = section.getAttribute("id");
+        }
+      });
+      setActiveSection(current);
+    };
 
-  window.addEventListener("scroll", handleScroll);
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
-
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header
-  className={`sticky top-0 z-50 transition-all duration-300 ${
-    isScrolled
-      ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg shadow-lg"
-      : "bg-white/50 dark:bg-gray-900/50 backdrop-blur-md"
-  }`}
->
-
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg shadow-lg"
+          : "bg-white/50 dark:bg-gray-900/50 backdrop-blur-md"
+      }`}
+    >
       <nav className="container mx-auto px-6 md:px-12 py-4 flex justify-between items-center">
         <motion.a
           href="#"
@@ -286,24 +276,23 @@ useEffect(() => {
         </motion.a>
         <div className="hidden md:flex items-center space-x-8">
           {["about", "projects", "skills", "contact"].map((item) => (
-  <a
-    key={item}
-    href={`#${item}`}
-    className={`capitalize relative text-lg group transition-colors duration-300 ${
-      activeSection === item
-        ? "text-indigo-500 font-semibold"
-        : "text-gray-800 dark:text-gray-200"
-    }`}
-  >
-    {item}
-    <span
-      className={`absolute bottom-0 left-0 h-0.5 bg-indigo-500 transition-all duration-300 ${
-        activeSection === item ? "w-full" : "w-0 group-hover:w-full"
-      }`}
-    ></span>
-  </a>
-))}
-
+            <a
+              key={item}
+              href={`#${item}`}
+              className={`capitalize relative text-lg group transition-colors duration-300 ${
+                activeSection === item
+                  ? "text-indigo-500 font-semibold"
+                  : "text-gray-800 dark:text-gray-200"
+              }`}
+            >
+              {item}
+              <span
+                className={`absolute bottom-0 left-0 h-0.5 bg-indigo-500 transition-all duration-300 ${
+                  activeSection === item ? "w-full" : "w-0 group-hover:w-full"
+                }`}
+              ></span>
+            </a>
+          ))}
         </div>
       </nav>
     </header>
@@ -319,7 +308,6 @@ const BackgroundShapes = () => (
 );
 
 const HeroSection = () => {
-  /* ... (HeroSection remains the same) */
   const title = "Building Digital Experiences";
   const words = title.split(" ");
   const titleVariants = {
@@ -405,7 +393,6 @@ const AboutMeSection = () => {
       </h2>
 
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center px-4 sm:px-8">
-        {/* Profile Image Section */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -416,12 +403,12 @@ const AboutMeSection = () => {
             <div className="w-80 h-80 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl">
               <div className="w-72 h-72 bg-white dark:bg-gray-900 rounded-full flex items-center justify-center overflow-hidden">
                 <Image
-  src="/sahil.jpeg"
-  alt="Profile"
-  width={300}
-  height={300}
-  className="w-full h-full object-cover rounded-full"
-/>
+                  src="/sahil.jpeg"
+                  alt="Profile"
+                  width={300}
+                  height={300}
+                  className="w-full h-full object-cover rounded-full"
+                />
               </div>
             </div>
             <div className="absolute -bottom-5 -right-5 w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg animate-bounce">
@@ -430,7 +417,6 @@ const AboutMeSection = () => {
           </div>
         </motion.div>
 
-        {/* Text Content Section */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -465,7 +451,6 @@ const AboutMeSection = () => {
               ))}
             </div>
 
-            {/* Buttons */}
             <div className="mt-10 flex flex-col sm:flex-row gap-5">
               <motion.a
                 href="/sg_resume.pdf"
@@ -506,49 +491,7 @@ const AboutMeSection = () => {
   );
 };
 
-const TimelineItem = ({ event, left }) => {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.5 });
-  const slideIn = {
-    hidden: { x: left ? -100 : 100, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
-
-  return (
-    <div
-      ref={ref}
-      className={`mb-8 flex justify-between items-center w-full ${
-        left ? "flex-row-reverse" : ""
-      }`}
-    >
-      <div className="order-1 w-5/12"></div>
-      <div className="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-12 h-12 rounded-full">
-        <div className="mx-auto text-white">{event.icon}</div>
-      </div>
-      <motion.div
-        className="order-1 bg-white dark:bg-gray-800 rounded-lg shadow-xl w-5/12 px-6 py-4"
-        variants={slideIn}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-      >
-        <p className="text-sm font-medium text-indigo-500 dark:text-indigo-400">
-          {event.date}
-        </p>
-        <h3 className="mb-3 font-bold text-gray-800 dark:text-white text-xl">
-          {event.title}
-        </h3>
-        <p className="text-sm leading-snug tracking-wide text-gray-600 dark:text-gray-400">
-          {event.description}
-        </p>
-      </motion.div>
-    </div>
-  );
-};
-
-const Projectcard = ({ project }) => {
+const ProjectCard = ({ project }) => {
   const ref = useRef(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -576,6 +519,8 @@ const Projectcard = ({ project }) => {
     y.set(0);
   };
 
+  if (!project) return null;
+
   return (
     <motion.div
       ref={ref}
@@ -583,8 +528,18 @@ const Projectcard = ({ project }) => {
       onMouseLeave={handleMouseLeave}
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
       variants={itemVariants}
-      className="relative bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden group project-card"
+      className="relative bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden group project-card h-full flex flex-col"
     >
+      {project.image && (
+        <div className="relative w-full h-48 overflow-hidden">
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-110"
+          />
+        </div>
+      )}
       <div
         className="p-6 flex-grow flex flex-col relative z-10"
         style={{ transform: "translateZ(20px)" }}
@@ -595,33 +550,39 @@ const Projectcard = ({ project }) => {
         <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">
           {project.description}
         </p>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300 text-xs font-semibold px-3 py-1 rounded-full"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+        {project.tags && project.tags.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.tags.map((tag, index) => (
+              <span
+                key={index}
+                className="bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300 text-xs font-semibold px-3 py-1 rounded-full"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
         <div className="flex justify-end items-center space-x-4 pt-4">
-          <a
-            href={project.repoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-500 dark:text-gray-400 hover:text-indigo-500 transition-colors"
-          >
-            <Github />
-          </a>
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-500 dark:text-gray-400 hover:text-indigo-500 transition-colors"
-          >
-            <ExternalLink />
-          </a>
+          {project.repoUrl && (
+            <a
+              href={project.repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-500 dark:text-gray-400 hover:text-indigo-500 transition-colors"
+            >
+              <Github />
+            </a>
+          )}
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-500 dark:text-gray-400 hover:text-indigo-500 transition-colors"
+            >
+              <ExternalLink />
+            </a>
+          )}
         </div>
       </div>
     </motion.div>
@@ -680,6 +641,7 @@ const ProjectsSection = () => {
             variants={itemVariants}
             whileHover={{ y: -10 }}
             transition={{ type: "spring", stiffness: 300 }}
+            className="h-full"
           >
             <ProjectCard project={project} />
           </motion.div>
@@ -785,7 +747,6 @@ const SkillsSection = () => {
         Technologies I work with to bring ideas to life
       </motion.p>
 
-      {/* Skills Cloud/Tags */}
       <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
         <div className="flex flex-wrap justify-center gap-4 p-8">
           {allSkills.map((skill, index) => (
@@ -808,8 +769,11 @@ const SkillsSection = () => {
                   <div className="group-hover:scale-110 transition-transform duration-300">
                     {skill.icon}
                   </div>
-                  <span className="text-sm font-semibold text-white group-hover:text-indigo-300 transition-colors">
+                  <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">
                     {skill.name}
+                  </p>
+                  <span className="text-xs text-indigo-400">
+                    {skill.category}
                   </span>
                 </div>
               </div>
@@ -817,197 +781,66 @@ const SkillsSection = () => {
           ))}
         </div>
       </motion.div>
+    </AnimatedSection>
+  );
+};
 
-      {/* Stats Section */}
-      <motion.div variants={itemVariants} className="mt-16 max-w-5xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-6">
-          <motion.div
-            className="bg-gradient-to-br from-indigo-500/20 to-purple-500/20 backdrop-blur-sm rounded-2xl p-8 border border-indigo-500/30 text-center"
-            whileHover={{ scale: 1.05, y: -5 }}
-            transition={{ type: "spring", stiffness: 300 }}
+const ContactSection = () => {
+  return (
+    <AnimatedSection id="contact">
+      <motion.h2
+        variants={itemVariants}
+        className="text-4xl font-bold text-center mb-16"
+      >
+        <span className="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
+          Get In Touch
+        </span>
+      </motion.h2>
+      <motion.div
+        variants={itemVariants}
+        className="max-w-2xl mx-auto text-center"
+      >
+        <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
+          I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+        </p>
+        <div className="flex justify-center gap-6">
+          <motion.a
+            href="https://github.com/SahilGupta893"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-600 dark:text-gray-400 hover:text-indigo-500 transition-colors"
+            whileHover={{ scale: 1.2 }}
           >
-            <div className="text-5xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent mb-2">
-              800+
-            </div>
-            <div className="text-gray-300 font-semibold flex items-center justify-center gap-2">
-              <FaCode className="text-indigo-400" />
-              DSA Problems Solved
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="bg-gradient-to-br from-indigo-500/20 to-purple-500/20 backdrop-blur-sm rounded-2xl p-8 border border-indigo-500/30 text-center"
-            whileHover={{ scale: 1.05, y: -5 }}
-            transition={{ type: "spring", stiffness: 300 }}
+            <Github size={32} />
+          </motion.a>
+          <motion.a
+            href="https://linkedin.com/in/sahil-gupta-893"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-600 dark:text-gray-400 hover:text-indigo-500 transition-colors"
+            whileHover={{ scale: 1.2 }}
           >
-            <div className="text-5xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent mb-2">
-              8.5+
-            </div>
-            <div className="text-gray-300 font-semibold flex items-center justify-center gap-2">
-              <FaBook className="text-indigo-400" />
-              CGPA Academic Record
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="bg-gradient-to-br from-indigo-500/20 to-purple-500/20 backdrop-blur-sm rounded-2xl p-8 border border-indigo-500/30 text-center"
-            whileHover={{ scale: 1.05, y: -5 }}
-            transition={{ type: "spring", stiffness: 300 }}
+            <Linkedin size={32} />
+          </motion.a>
+          <motion.a
+            href="https://twitter.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-600 dark:text-gray-400 hover:text-indigo-500 transition-colors"
+            whileHover={{ scale: 1.2 }}
           >
-            <div className="text-5xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent mb-2">
-              10+
-            </div>
-            <div className="text-gray-300 font-semibold flex items-center justify-center gap-2">
-              <FaGlobe className="text-indigo-400" />
-              Projects Developed
-            </div>
-          </motion.div>
+            <Twitter size={32} />
+          </motion.a>
         </div>
       </motion.div>
     </AnimatedSection>
   );
 };
 
-// NEW: ContactSection with a form
-const ContactSection = () => {
-  const [status, setStatus] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setStatus("Sending...");
-    // Mock API call
-    setTimeout(() => {
-      setStatus("Message Sent!");
-    }, 2000);
-  };
-
+const Footer = () => {
   return (
-    <AnimatedSection id="contact">
-      <motion.h2
-        variants={itemVariants}
-        className="text-4xl font-bold text-center mb-6"
-      >
-        <span className="bg-gradient-to-r from-indigo-500 to-purple-500 animated-gradient-text">
-          Get In Touch
-        </span>
-      </motion.h2>
-      <motion.p
-        variants={itemVariants}
-        className="text-lg text-center max-w-2xl mx-auto text-gray-600 dark:text-gray-400 mb-12"
-      >
-        Have a project in mind or just want to say hi? I&apos;d love to hear from
-        you.
-      </motion.p>
-      <motion.form
-        variants={itemVariants}
-        onSubmit={handleSubmit}
-        className="max-w-xl mx-auto space-y-6"
-      >
-        <div className="flex gap-6">
-          <input
-            type="text"
-            placeholder="Your Name"
-            required
-            className="w-full bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
-          />
-          <input
-            type="email"
-            placeholder="Your Email"
-            required
-            className="w-full bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
-          />
-        </div>
-        <textarea
-          placeholder="Your Message"
-          required
-          rows="5"
-          className="w-full bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
-        ></textarea>
-        <div className="text-center">
-          {status ? (
-            <p className="text-lg text-green-500">{status}</p>
-          ) : (
-            <GradientButton as="button">Send Message</GradientButton>
-          )}
-        </div>
-      </motion.form>
-    </AnimatedSection>
+    <footer className="bg-gray-900 dark:bg-black text-gray-400 py-8 text-center">
+      <p>&copy; 2024 Sahil Gupta. All rights reserved.</p>
+    </footer>
   );
 };
-
-const Footer = () => (
-  <footer className="py-12 relative bg-gray-900/50 backdrop-blur-sm">
-    <div className="container mx-auto px-6 md:px-12 text-center text-gray-600 dark:text-gray-400">
-      <div className="flex justify-center space-x-8 mb-8">
-        <motion.a
-          href="https://github.com/SahilGupta893"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-indigo-500 transition-colors p-3 rounded-full hover:bg-indigo-500/10"
-          whileHover={{ scale: 1.2, y: -2 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <Github size={32} />
-        </motion.a>
-        <motion.a
-          href="https://linkedin.com/in/sahil-gupta-893"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-indigo-500 transition-colors p-3 rounded-full hover:bg-indigo-500/10"
-          whileHover={{ scale: 1.2, y: -2 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <Linkedin size={32} />
-        </motion.a>
-        <motion.a
-          href="https://twitter.com/sahilgupta893"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-indigo-500 transition-colors p-3 rounded-full hover:bg-indigo-500/10"
-          whileHover={{ scale: 1.2, y: -2 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <Twitter size={32} />
-        </motion.a>
-        <motion.a
-          href="mailto:guptasahil3284@gmail.com"
-          className="hover:text-indigo-500 transition-colors p-3 rounded-full hover:bg-indigo-500/10"
-          whileHover={{ scale: 1.2, y: -2 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <svg
-            className="w-8 h-8"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-            />
-          </svg>
-        </motion.a>
-        <motion.a
-          href="https://leetcode.com/u/Sahil_04gupta/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-indigo-500 transition-colors p-3 rounded-full hover:bg-indigo-500/10"
-          whileHover={{ scale: 1.2, y: -2 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <SiLeetcode size={32} />
-        </motion.a>
-      </div>
-      <div className="border-t border-gray-700 pt-6">
-        <p className="text-sm">
-          &copy; {new Date().getFullYear()} Sahil Gupta. All Rights Reserved.
-        </p>
-        <p className="text-xs mt-2 text-gray-500">
-          Built with Next.js, React, and Framer Motion
-        </p>
-      </div>
-    </div>
-  </footer>
-);
